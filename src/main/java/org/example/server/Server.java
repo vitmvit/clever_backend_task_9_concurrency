@@ -6,18 +6,14 @@ import org.example.model.Response;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class Server {
-    private final List<Integer> sharedList;
-    private final AtomicInteger listSize;
+    private static final List<Integer> sharedList = new ArrayList<>();
     private final Lock lock;
 
     public Server() {
-        this.sharedList = new ArrayList<>();
-        this.listSize = new AtomicInteger(0);
         this.lock = new ReentrantLock();
     }
 
@@ -33,11 +29,10 @@ public class Server {
         lock.lock();
         try {
             sharedList.add(value);
-            listSize.incrementAndGet();
         } finally {
             lock.unlock();
         }
-        return new Response(listSize.get());
+        return new Response(sharedList.size());
     }
 
     private int getRandomDelay() {

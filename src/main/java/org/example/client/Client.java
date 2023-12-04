@@ -60,6 +60,10 @@ public class Client {
         return list;
     }
 
+    public int getAccumulator() {
+        return accumulator;
+    }
+
     private int getRandomIndex() {
         return random.nextInt(list.size());
     }
