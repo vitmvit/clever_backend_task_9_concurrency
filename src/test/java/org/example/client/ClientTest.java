@@ -7,25 +7,23 @@ import org.junit.jupiter.api.Test;
 
 public class ClientTest {
 
-    private Client client;
-    private int sizeList;
+    private static final int SIZE = 100;
+
+    private final Client client = new Client(new Server(), SIZE);
 
     @BeforeEach
     public void setUp() {
-        sizeList = 100;
-        client = new Client(new Server(), sizeList);
+        client.getServer().getList().clear();
+        client.run();
     }
 
     @Test
-    public void testRun() {
-        client.run();
-        Assertions.assertEquals(0, client.getList().size());
-        Assertions.assertEquals((1 + sizeList) * (sizeList / 2), client.getAccumulator());
+    public void runTest() {
+        Assertions.assertEquals((1 + SIZE) * (SIZE / 2), client.getAccumulator());
     }
 
     @Test
-    public void testDataSize() {
-        client.run();
+    public void dataSizeTest() {
         Assertions.assertEquals(0, client.getList().size());
     }
 }

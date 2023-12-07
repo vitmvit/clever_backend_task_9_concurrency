@@ -35,6 +35,10 @@ public class Server {
         return new Response(sharedList.size());
     }
 
+    public List<Integer> getList() {
+        return sharedList;
+    }
+
     private int getRandomDelay() {
         Random random = new Random();
         return random.nextInt(901) + 100;

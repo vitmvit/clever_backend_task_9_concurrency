@@ -28,6 +28,10 @@ public class Client {
         this.accumulator = 0;
     }
 
+    public Server getServer() {
+        return server;
+    }
+
     public void run() {
         ExecutorService executor = Executors.newCachedThreadPool();
         List<Future<Response>> futures = new ArrayList<>();
