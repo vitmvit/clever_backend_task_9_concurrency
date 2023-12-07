@@ -16,7 +16,7 @@ public class ClientServerTest {
     private final Client client = new Client(server, SIZE);
 
     @Test
-    void testClientServerTest() throws InterruptedException {
+    void clientServerTest() throws InterruptedException {
 
         Thread clientThread = new Thread(client::run);
         clientThread.start();
